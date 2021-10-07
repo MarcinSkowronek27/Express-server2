@@ -10,12 +10,13 @@ app.use((req, res, next) => {
   next();
 });
 
+
 app.get('/', (req, res) => {
-  res.show('index.html');
+  res.show('home.html');
 });
 
 app.get('/home', (req, res) => {
-  res.show('index.html');
+  res.show('home.html');
 });
 
 app.get('/about', (req, res) => {
@@ -24,17 +25,12 @@ app.get('/about', (req, res) => {
 
 app.use(express.static(path.join(__dirname, '/public')));
 
-app.use('/user/panel', (req, res) => {
-  res.show('login.html');
+app.use('/user/', (req, res) => {
+  res.show('forbidden.html');
 });
-
-app.use('/user/settings', (req, res) => {
-  res.show('login.html');
-});
-
 
 app.use((req, res) => {
-  res.status(404).show('notfound.html');
+  res.status(404).show('404.html');
 })
 
 app.listen(8000, () => {
